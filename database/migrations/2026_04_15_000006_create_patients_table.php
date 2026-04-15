@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('birth_place');
             $table->date('birth_date');
             $table->enum('gender', ['L', 'P']);
+            $table->string('religion')->nullable();
             $table->string('language');
             $table->text('address');
             $table->string('blood_type')->nullable();

@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::prefix('front-office')->group(function () {
+Route::prefix('front-office')->name('api.')->group(function () {
     Route::apiResource('patients', PatientController::class);
-    Route::post('register', [RegistrationController::class, 'store']);
+    Route::post('register', [RegistrationController::class, 'store'])->name('register');
 });

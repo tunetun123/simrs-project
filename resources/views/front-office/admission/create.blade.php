@@ -14,58 +14,59 @@
                     <small class="text-muted float-end">Data Kunjungan</small>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admissions.store') }}" method="POST">
+                    <form id="form-registration">
                         @csrf
                         <div class="mb-3">
-                            <label class="form-label" for="patient_id">Cari Pasien (No. RM / Nama)</label>
+                            <label class="form-label" for="patient_search">Cari Pasien (No. RM / Nama)</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Masukkan No. RM atau Nama Pasien" />
-                                <button class="btn btn-outline-primary" type="button">Cari</button>
+                                <input type="text" id="patient_search" class="form-control" placeholder="Masukkan No. RM atau Nama Pasien" />
+                                <button class="btn btn-outline-primary" type="button" id="btn-search">Cari</button>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">Nama Pasien</label>
-                                <input type="text" class="form-control" readonly value="John Doe" />
+                                <input type="text" id="display_name" class="form-control" readonly placeholder="Pilih pasien terlebih dahulu" />
+                                <input type="hidden" name="medical_record_number" id="medical_record_number" required />
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">No. Rekam Medis</label>
-                                <input type="text" class="form-control" readonly value="000001" />
+                                <input type="text" id="display_rm" class="form-control" readonly placeholder="Pilih pasien terlebih dahulu" />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="unit">Klinik / Unit Tujuan</label>
-                                <select class="form-select" id="unit" name="unit" required>
+                                <label class="form-label" for="polyclinic_code">Klinik / Unit Tujuan</label>
+                                <select class="form-select" id="polyclinic_code" name="polyclinic_code" required>
                                     <option value="">Pilih Unit</option>
-                                    <option value="poli_umum">Poli Umum</option>
-                                    <option value="poli_gigi">Poli Gigi</option>
-                                    <option value="igd">IGD</option>
+                                    @foreach($polyclinics as $poly)
+                                        <option value="{{ $poly->polyclinic_code }}">{{ $poly->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="doctor">Dokter</label>
-                                <select class="form-select" id="doctor" name="doctor" required>
-                                    <option value="">Pilih Dokter</option>
-                                    <option value="dr_smith">dr. Smith</option>
-                                    <option value="dr_doe">dr. Doe</option>
+                                <label class="form-label" for="visit_type">Jenis Kunjungan</label>
+                                <select class="form-select" id="visit_type" name="visit_type" required>
+                                    <option value="Rawat Jalan">Rawat Jalan</option>
+                                    <option value="IGD">IGD</option>
                                 </select>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="payment_type">Jenis Penjamin / Pembayaran</label>
-                            <select class="form-select" id="payment_type" name="payment_type" required>
-                                <option value="umum">Umum (Mandiri)</option>
-                                <option value="bpjs">BPJS Kesehatan</option>
-                                <option value="asuransi_lain">Asuransi Lainnya</option>
+                            <label class="form-label" for="insurance_code">Jenis Penjamin / Pembayaran</label>
+                            <select class="form-select" id="insurance_code" name="insurance_code" required>
+                                <option value="">Pilih Penjamin</option>
+                                @foreach($insurances as $ins)
+                                    <option value="{{ $ins->insurance_code }}">{{ $ins->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="notes">Keterangan / Keluhan Utama</label>
-                            <textarea id="notes" class="form-control" name="notes" placeholder="Masukkan Keluhan Singkat"></textarea>
+                            <label class="form-label" for="participant_number">Nomor Peserta (Opsional)</label>
+                            <input type="text" class="form-control" id="participant_number" name="participant_number" placeholder="Masukkan No. Kartu BPJS/Asuransi" />
                         </div>
                         <div class="mt-4">
-                            <button type="submit" class="btn btn-primary me-2">Daftarkan</button>
+                            <button type="submit" class="btn btn-primary me-2">Daftarkan Kunjungan</button>
                             <a href="{{ route('admissions.index') }}" class="btn btn-outline-secondary">Batal</a>
                         </div>
                     </form>
@@ -75,3 +76,87 @@
     </div>
 </div>
 @endsection
+
+@push('myscript')
+<script>
+    $(document).ready(function() {
+        // Handle pencarian pasien sederhana
+        $('#btn-search').on('click', function() {
+            const query = $('#patient_search').val();
+            if(!query) return;
+
+            $.ajax({
+                url: "{{ route('api.patients.show', ':patient') }}".replace(':patient', query),
+                type: 'GET',
+                success: function(response) {
+                    const patient = response.data;
+                    $('#display_name').val(patient.full_name);
+                    $('#display_rm').val(patient.medical_record_number);
+                    $('#medical_record_number').val(patient.medical_record_number);
+                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pasien Ditemukan',
+                        text: 'Pasien: ' + patient.full_name,
+                        timer: 1500,
+                        showConfirmButton: false
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Tidak Ditemukan',
+                        text: 'Pasien dengan No. RM tersebut tidak ditemukan.',
+                        confirmButtonText: 'Tutup'
+                    });
+                    $('#display_name, #display_rm, #medical_record_number').val('');
+                }
+            });
+        });
+
+        // Handle submit registrasi
+        $('#form-registration').on('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = $(this).serialize();
+            
+            $.ajax({
+                url: '{{ route('api.register') }}',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Pendaftaran Berhasil!',
+                        text: 'Nomor Kunjungan: ' + response.data.visit_number,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/front-office/admissions';
+                        }
+                    });
+                },
+                error: function(xhr) {
+                    let errorMessage = 'Terjadi kesalahan sistem.';
+                    
+                    if (xhr.status === 422) {
+                        const errors = xhr.responseJSON.errors;
+                        errorMessage = '';
+                        $.each(errors, function(key, value) {
+                            errorMessage += value[0] + '<br>';
+                        });
+                    }
+                    
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal Daftar!',
+                        html: errorMessage,
+                        confirmButtonText: 'Tutup'
+                    });
+                }
+            });
+        });
+    });
+</script>
+@endpush

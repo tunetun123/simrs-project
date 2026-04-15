@@ -39,6 +39,11 @@ class PatientService
         return $this->patientRepository->delete($id);
     }
 
+    public function getNextMedicalRecordNumber()
+    {
+        return $this->generateMedicalRecordNumber();
+    }
+
     private function generateMedicalRecordNumber()
     {
         $lastRecord = $this->patientRepository->getLastMedicalRecordNumber();

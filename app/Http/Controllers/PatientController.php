@@ -2,16 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PatientService;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
+    protected $patientService;
+
+    public function __construct(PatientService $patientService)
+    {
+        $this->patientService = $patientService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('front-office.patient.index', ['title' => 'Daftar Pasien']);
+        $patients = $this->patientService->getAllPatients();
+        return view('front-office.patient.index', [
+            'title' => 'Daftar Pasien',
+            'patients' => $patients
+        ]);
     }
 
     /**
@@ -19,7 +31,11 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('front-office.patient.create', ['title' => 'Pendaftaran Pasien Baru']);
+        $nextMrn = $this->patientService->getNextMedicalRecordNumber();
+        return view('front-office.patient.create', [
+            'title' => 'Pendaftaran Pasien Baru',
+            'nextMrn' => $nextMrn
+        ]);
     }
 
     /**
@@ -27,7 +43,7 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Handled by API
     }
 
     /**
@@ -35,7 +51,11 @@ class PatientController extends Controller
      */
     public function show(string $id)
     {
-        return view('front-office.patient.show', ['title' => 'Detail Pasien']);
+        $patient = $this->patientService->getPatientById($id);
+        return view('front-office.patient.show', [
+            'title' => 'Detail Pasien',
+            'patient' => $patient
+        ]);
     }
 
     /**
@@ -43,7 +63,11 @@ class PatientController extends Controller
      */
     public function edit(string $id)
     {
-        return view('front-office.patient.edit', ['title' => 'Edit Pasien']);
+        $patient = $this->patientService->getPatientById($id);
+        return view('front-office.patient.edit', [
+            'title' => 'Edit Pasien',
+            'patient' => $patient
+        ]);
     }
 
     /**
@@ -59,6 +83,7 @@ class PatientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->patientService->deletePatient($id);
+        return redirect()->route('patients.index')->with('success', 'Data pasien berhasil dihapus.');
     }
 }

@@ -24,6 +24,7 @@ class Patient extends Model
         'birth_place',
         'birth_date',
         'gender',
+        'religion',
         'language',
         'address',
         'blood_type',

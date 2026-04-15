@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Insurance;
+use App\Models\Polyclinic;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller
@@ -11,7 +14,11 @@ class AdmissionController extends Controller
      */
     public function index()
     {
-        return view('front-office.admission.index', ['title' => 'Daftar Pendaftaran']);
+        $admissions = Registration::with(['patient', 'polyclinic'])->orderBy('visit_date', 'desc')->get();
+        return view('front-office.admission.index', [
+            'title' => 'Daftar Pendaftaran',
+            'admissions' => $admissions
+        ]);
     }
 
     /**
@@ -19,7 +26,14 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return view('front-office.admission.create', ['title' => 'Buat Pendaftaran']);
+        $polyclinics = Polyclinic::where('status', 'active')->get();
+        $insurances = Insurance::where('status', 'active')->get();
+
+        return view('front-office.admission.create', [
+            'title' => 'Buat Pendaftaran',
+            'polyclinics' => $polyclinics,
+            'insurances' => $insurances
+        ]);
     }
 
     /**
@@ -27,7 +41,7 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Handled by API
     }
 
     /**
@@ -35,7 +49,11 @@ class AdmissionController extends Controller
      */
     public function show(string $id)
     {
-        return view('front-office.admission.show', ['title' => 'Detail Pendaftaran']);
+        $admission = Registration::with(['patient', 'polyclinic', 'insurance'])->findOrFail($id);
+        return view('front-office.admission.show', [
+            'title' => 'Detail Pendaftaran',
+            'admission' => $admission
+        ]);
     }
 
     /**
@@ -43,7 +61,11 @@ class AdmissionController extends Controller
      */
     public function edit(string $id)
     {
-        return view('front-office.admission.edit', ['title' => 'Edit Pendaftaran']);
+        $admission = Registration::findOrFail($id);
+        return view('front-office.admission.edit', [
+            'title' => 'Edit Pendaftaran',
+            'admission' => $admission
+        ]);
     }
 
     /**
@@ -59,6 +81,8 @@ class AdmissionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $admission = Registration::findOrFail($id);
+        $admission->delete();
+        return redirect()->route('admissions.index')->with('success', 'Data pendaftaran berhasil dihapus.');
     }
 }

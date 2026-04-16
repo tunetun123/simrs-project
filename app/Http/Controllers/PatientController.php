@@ -39,14 +39,6 @@ class PatientController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // Handled by API
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
@@ -68,14 +60,6 @@ class PatientController extends Controller
             'title' => 'Edit Pasien',
             'patient' => $patient
         ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**

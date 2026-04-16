@@ -14,18 +14,9 @@ return new class extends Migration
         Schema::create('polyclinics', function (Blueprint $table) {
             $table->string('polyclinic_code')->primary();
             $table->string('name');
-            $table->string('doctor_code');
-            $table->string('insurance_code');
-            $table->string('service_days'); // can be JSON
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->integer('patient_quota');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('doctor_code')->references('employee_code')->on('employees');
-            $table->foreign('insurance_code')->references('insurance_code')->on('insurances');
         });
     }
 

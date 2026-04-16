@@ -6,25 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Insurance extends Model
+class Doctor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $primaryKey = 'insurance_code';
+    protected $primaryKey = 'employee_code';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'insurance_code',
-        'name',
-        'logo',
-        'address',
-        'contact',
-        'status',
+        'employee_code',
+        'specialization',
+        'sip_number',
     ];
 
-    public function registrations()
+    public function employee()
     {
-        return $this->hasMany(Registration::class, 'insurance_code', 'insurance_code');
+        return $this->belongsTo(Employee::class, 'employee_code', 'employee_code');
     }
 }

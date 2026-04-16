@@ -6,25 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Insurance extends Model
+class Department extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $primaryKey = 'insurance_code';
+    protected $primaryKey = 'department_code';
     public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
-        'insurance_code',
+        'department_code',
         'name',
-        'logo',
-        'address',
-        'contact',
         'status',
     ];
-
-    public function registrations()
-    {
-        return $this->hasMany(Registration::class, 'insurance_code', 'insurance_code');
-    }
 }

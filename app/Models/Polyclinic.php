@@ -17,14 +17,13 @@ class Polyclinic extends Model
     protected $fillable = [
         'polyclinic_code',
         'name',
-        'doctor_code',
-        'insurance_code',
-        'service_days',
-        'start_time',
-        'end_time',
-        'patient_quota',
         'status',
     ];
+
+    public function schedules()
+    {
+        return $this->hasMany(PolyclinicSchedule::class, 'polyclinic_code', 'polyclinic_code');
+    }
 
     public function registrations()
     {

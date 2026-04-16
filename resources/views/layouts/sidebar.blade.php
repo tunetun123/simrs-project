@@ -56,10 +56,17 @@
             <span class="menu-header-text">Master Data</span>
         </li>
 
-        <li class="menu-item">
-            <a href="#" class="menu-link">
+        <li class="menu-item {{ Request::is('front-office/polyclinics*') ? 'active' : '' }}">
+            <a href="{{ route('polyclinics.index') }}" class="menu-link">
                 <i class="menu-icon fa-solid fa-hospital"></i>
                 <div>Poliklinik</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ Request::is('front-office/insurances*') ? 'active' : '' }}">
+            <a href="{{ route('insurances.index') }}" class="menu-link">
+                <i class="menu-icon fa-solid fa-id-card"></i>
+                <div>Asuransi</div>
             </a>
         </li>
     </ul>

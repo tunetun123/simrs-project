@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('insurances', function (Blueprint $table) {
             $table->string('insurance_code')->primary();
             $table->string('name');
+            $table->string('logo')->nullable();
             $table->text('address');
             $table->string('contact');
             $table->enum('status', ['active', 'inactive'])->default('active');

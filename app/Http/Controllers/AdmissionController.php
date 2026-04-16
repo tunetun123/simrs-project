@@ -37,14 +37,6 @@ class AdmissionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        // Handled by API
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
@@ -66,14 +58,6 @@ class AdmissionController extends Controller
             'title' => 'Edit Pendaftaran',
             'admission' => $admission
         ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**

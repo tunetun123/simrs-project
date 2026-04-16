@@ -53,6 +53,37 @@ class PolyclinicController extends Controller
         return response()->json(['message' => 'Schedules created successfully', 'data' => $schedules], 201);
     }
 
+    public function show($id)
+    {
+        $polyclinic = $this->polyclinicService->getPolyclinicById($id);
+        return new PolyclinicResource($polyclinic);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'status' => 'required|in:active,inactive',
+        ]);
+
+        $polyclinic = $this->polyclinicService->updatePolyclinic($id, $validated);
+        return new PolyclinicResource($polyclinic);
+    }
+
+    public function destroy($id)
+    {
+        // Check if polyclinic has schedules
+        $polyclinic = $this->polyclinicService->getPolyclinicById($id);
+        if ($polyclinic->schedules()->count() > 0) {
+            return response()->json([
+                'message' => 'Cannot delete polyclinic that has active schedules.'
+            ], 422);
+        }
+
+        $this->polyclinicService->deletePolyclinic($id);
+        return response()->json(['message' => 'Polyclinic deleted successfully.']);
+    }
+
     public function destroySchedule($id)
     {
         $this->polyclinicService->deleteSchedule($id);

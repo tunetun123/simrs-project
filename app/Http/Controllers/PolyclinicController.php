@@ -19,9 +19,12 @@ class PolyclinicController extends Controller
     public function index()
     {
         $schedules = $this->polyclinicService->getAllSchedules();
+        $polyclinics = $this->polyclinicService->getAllPolyclinics();
+        
         return view('front-office.polyclinic.index', [
-            'title' => 'Daftar Jadwal Poliklinik',
-            'schedules' => $schedules
+            'title' => 'Manajemen Poliklinik',
+            'schedules' => $schedules,
+            'polyclinics' => $polyclinics
         ]);
     }
 

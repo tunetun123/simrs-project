@@ -36,13 +36,44 @@ class Employee extends Model
         'marital_status',
         'bank_account_number',
         'photo_path',
-        'status',
         'department_code',
         'position_code',
     ];
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_code', 'department_code');
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class, 'position_code', 'position_code');
+    }
+
     public function doctor()
     {
         return $this->hasOne(Doctor::class, 'employee_code', 'employee_code');
+    }
+
+    public function nurse()
+    {
+        return $this->hasOne(Nurse::class, 'employee_code', 'employee_code');
+    }
+
+    public function isDoctor()
+    {
+        return $this->doctor()->exists();
+    }
+
+    public function isNurse()
+    {
+        return $this->nurse()->exists();
+    }
+
+    public function getProfessionType()
+    {
+        if ($this->isDoctor()) return 'Dokter';
+        if ($this->isNurse()) return 'Perawat';
+        return 'Non-Klinis';
     }
 }

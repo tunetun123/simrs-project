@@ -4,6 +4,7 @@ use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PolyclinicController;
 use App\Http\Controllers\InsuranceController;
+use App\Http\Controllers\StaffingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,4 +39,13 @@ Route::prefix('front-office')->group(function () {
     Route::get('insurances/{id}', [InsuranceController::class, 'show'])->name('insurances.show');
     Route::get('insurances/{id}/edit', [InsuranceController::class, 'edit'])->name('insurances.edit');
     Route::delete('insurances/{id}', [InsuranceController::class, 'destroy'])->name('insurances.destroy');
+});
+
+Route::prefix('back-office')->group(function () {
+    // Staffing Routes
+    Route::get('staffing', [StaffingController::class, 'index'])->name('staffing.index');
+    Route::get('staffing/create', [StaffingController::class, 'create'])->name('staffing.create');
+    Route::get('staffing/{id}', [StaffingController::class, 'show'])->name('staffing.show');
+    Route::get('staffing/{id}/edit', [StaffingController::class, 'edit'])->name('staffing.edit');
+    Route::delete('staffing/{id}', [StaffingController::class, 'destroy'])->name('staffing.destroy');
 });

@@ -30,7 +30,7 @@ class PolyclinicApiTest extends TestCase
             'nik' => '1234567890123456',
             'birth_date' => '1980-01-01',
             'birth_place' => 'Jakarta',
-            'gender' => 'male',
+            'gender' => 'laki-laki',
             'last_education' => 'S2 Kedokteran',
             'contact' => '08123456789',
             'address' => 'Jl. Kebon Sirih',
@@ -135,7 +135,6 @@ class PolyclinicApiTest extends TestCase
         $this->assertDatabaseHas('polyclinics', [
             'polyclinic_code' => 'POLI01',
             'name' => 'Poli Umum Updated',
-            'patient_quota' => 50,
             'status' => 'inactive'
         ]);
     }

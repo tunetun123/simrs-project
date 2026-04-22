@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('nurses', function (Blueprint $table) {
             $table->string('employee_code')->primary();
             $table->string('str_number');
+            $table->enum('status', ['aktif', 'cuti', 'non-aktif'])->default('aktif');
             $table->timestamps();
             $table->softDeletes();
 

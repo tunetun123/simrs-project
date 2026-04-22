@@ -42,13 +42,13 @@
         </li>
 
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Kepegawaian</span>
+            <span class="menu-header-text">Back Office</span>
         </li>
 
-        <li class="menu-item">
-            <a href="#" class="menu-link">
-                <i class="menu-icon fa-solid fa-users"></i>
-                <div>Data Pegawai</div>
+        <li class="menu-item {{ Request::is('back-office/staffing*') ? 'active' : '' }}">
+            <a href="{{ route('staffing.index') }}" class="menu-link">
+                <i class="menu-icon fa-solid fa-users-gear"></i>
+                <div>Kepegawaian</div>
             </a>
         </li>
 

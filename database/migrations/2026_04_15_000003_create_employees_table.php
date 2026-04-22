@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nik')->unique();
             $table->date('birth_date');
             $table->string('birth_place');
-            $table->enum('gender', ['male', 'female']);
+            $table->enum('gender', ['laki-laki', 'perempuan']);
             $table->string('last_education');
             $table->string('contact');
             $table->text('address');
@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('marital_status');
             $table->string('bank_account_number')->nullable();
             $table->string('photo_path')->nullable();
-            $table->enum('status', ['active', 'on_leave', 'inactive'])->default('active');
             $table->string('department_code');
             $table->string('position_code');
             $table->timestamps();

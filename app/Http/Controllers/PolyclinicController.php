@@ -30,8 +30,10 @@ class PolyclinicController extends Controller
 
     public function create()
     {
-        $polyclinics = $this->polyclinicService->getAllPolyclinics();
-        $doctors = Employee::whereHas('doctor')->get();
+        $polyclinics = $this->polyclinicService->getAllPolyclinics()->where('status', 'active');
+        $doctors = Employee::whereHas('doctor', function($q) {
+            $q->where('status', 'aktif');
+        })->get();
         $insurances = Insurance::where('status', 'active')->get();
 
         return view('front-office.polyclinic.create', [

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('employee_code')->primary();
             $table->string('specialization');
             $table->string('sip_number');
+            $table->enum('status', ['aktif', 'cuti', 'non-aktif'])->default('aktif');
             $table->timestamps();
             $table->softDeletes();
 

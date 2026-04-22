@@ -281,7 +281,7 @@
                 <input type="hidden" name="department_code" id="edit_dept_code">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Nama Departemen</label>
+                        <label class="form-label">Nama Departemen <span class="text-danger">*</span></label>
                         <input type="text" name="name" id="edit_dept_name" class="form-control" required>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -315,7 +315,7 @@
                 <input type="hidden" name="position_code" id="edit_pos_code">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Nama Jabatan</label>
+                        <label class="form-label">Nama Jabatan <span class="text-danger">*</span></label>
                         <input type="text" name="name" id="edit_pos_name" class="form-control" required>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -349,12 +349,12 @@
                 <input type="hidden" id="doctor_emp_code" name="employee_code">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Spesialisasi</label>
+                        <label class="form-label">Spesialisasi <span class="text-danger">*</span></label>
                         <input type="text" name="specialization" id="doctor_spec" class="form-control" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">No. SIP</label>
+                        <label class="form-label">No. SIP <span class="text-danger">*</span></label>
                         <input type="text" name="sip_number" id="doctor_sip" class="form-control" required>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -388,12 +388,12 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Kode Departemen</label>
+                        <label class="form-label">Kode Departemen <span class="text-danger">*</span></label>
                         <input type="text" name="department_code" class="form-control" placeholder="Contoh: HRD, IT, MED" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Nama Departemen</label>
+                        <label class="form-label">Nama Departemen <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" placeholder="Nama Lengkap Departemen" required>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -418,12 +418,12 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label">Kode Jabatan</label>
+                        <label class="form-label">Kode Jabatan <span class="text-danger">*</span></label>
                         <input type="text" name="position_code" class="form-control" placeholder="Contoh: DOC, NUR, ADM" required>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Nama Jabatan</label>
+                        <label class="form-label">Nama Jabatan <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" placeholder="Nama Lengkap Jabatan" required>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -447,20 +447,7 @@
         });
 
         // Generic Validation Handler
-        function handleValidationErrors(form, errors) {
-            $(form).find('.is-invalid').removeClass('is-invalid');
-            $(form).find('.invalid-feedback').text('');
-            
-            Object.keys(errors).forEach(key => {
-                const input = $(form).find(`[name="${key}"]`);
-                input.addClass('is-invalid');
-                const feedback = input.siblings('.invalid-feedback');
-                if (feedback.length) {
-                    feedback.text(errors[key][0]);
-                } else {
-                    input.parent().append(`<div class="invalid-feedback d-block">${errors[key][0]}</div>`);
-                }
-            });
+                    });
         }
 
         // ---------------- DOKTER ----------------

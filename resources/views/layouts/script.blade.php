@@ -17,6 +17,35 @@
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    <!-- Global Form Validation UX -->
+    <script>
+        function handleValidationErrors(form, errors) {
+            $(form).find('.is-invalid').removeClass('is-invalid');
+            $(form).find('.invalid-feedback').text('');
+            
+            Object.keys(errors).forEach(key => {
+                const input = $(form).find(`[name="${key}"]`);
+                if(input.length) {
+                    input.addClass('is-invalid');
+                    const feedback = input.siblings('.invalid-feedback');
+                    if (feedback.length) {
+                        feedback.text(errors[key][0]);
+                    } else {
+                        input.parent().append(`<div class="invalid-feedback d-block">${errors[key][0]}</div>`);
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // Hapus class is-invalid dan teks error saat user mulai mengisi form
+            $(document).on('input change', 'input.is-invalid, select.is-invalid, textarea.is-invalid', function() {
+                $(this).removeClass('is-invalid');
+                $(this).siblings('.invalid-feedback').text('');
+            });
+        });
+    </script>
+
     <!-- Page JS -->
     @stack('myscript')
 

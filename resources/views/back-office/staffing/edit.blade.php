@@ -31,7 +31,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">Jenis Kelamin</label>
+                                <label class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
                                 <select name="gender" class="form-select" required>
                                     <option value="laki-laki" {{ $employee->gender == 'laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                                     <option value="perempuan" {{ $employee->gender == 'perempuan' ? 'selected' : '' }}>Perempuan</option>
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Alamat Lengkap</label>
+                            <label class="form-label">Alamat Lengkap <span class="text-danger">*</span></label>
                             <textarea name="address" class="form-control" rows="2" required>{{ $employee->address }}</textarea>
                         </div>
                         <div class="row mb-3">
@@ -114,7 +114,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">Departemen</label>
+                                <label class="form-label">Departemen <span class="text-danger">*</span></label>
                                 <select name="department_code" class="form-select select2" required>
                                     @foreach($departments as $dept)
                                         <option value="{{ $dept->department_code }}" {{ $employee->department_code == $dept->department_code ? 'selected' : '' }}>{{ $dept->name }}</option>
@@ -122,7 +122,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Jabatan</label>
+                                <label class="form-label">Jabatan <span class="text-danger">*</span></label>
                                 <select name="position_code" id="position_code" class="form-select select2" required>
                                     @foreach($positions as $pos)
                                         <option value="{{ $pos->position_code }}" {{ $employee->position_code == $pos->position_code ? 'selected' : '' }}>{{ $pos->name }}</option>

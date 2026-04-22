@@ -22,9 +22,9 @@ Route::prefix('front-office')->group(function () {
     // Admission Routes
     Route::get('admissions', [AdmissionController::class, 'index'])->name('admissions.index');
     Route::get('admissions/create', [AdmissionController::class, 'create'])->name('admissions.create');
-    Route::get('admissions/{id}', [AdmissionController::class, 'show'])->name('admissions.show');
-    Route::get('admissions/{id}/edit', [AdmissionController::class, 'edit'])->name('admissions.edit');
-    Route::delete('admissions/{id}', [AdmissionController::class, 'destroy'])->name('admissions.destroy');
+    Route::get('admissions/{visit_number}', [AdmissionController::class, 'show'])->name('admissions.show')->where('visit_number', '.*');
+    Route::get('admissions/{visit_number}/edit', [AdmissionController::class, 'edit'])->name('admissions.edit')->where('visit_number', '.*');
+    Route::delete('admissions/{visit_number}', [AdmissionController::class, 'destroy'])->name('admissions.destroy')->where('visit_number', '.*');
 
     // Polyclinic Routes
     Route::get('polyclinics', [PolyclinicController::class, 'index'])->name('polyclinics.index');

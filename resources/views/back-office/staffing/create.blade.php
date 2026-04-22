@@ -24,17 +24,17 @@
                         
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label">Kode Pegawai *</label>
+                                <label class="form-label">Kode Pegawai <span class="text-danger">*</span></label>
                                 <input type="text" name="employee_code" class="form-control" placeholder="EMP-XXXX" required />
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">NIK (No. KTP) *</label>
+                                <label class="form-label">NIK (No. KTP) <span class="text-danger">*</span></label>
                                 <input type="text" name="nik" class="form-control" maxlength="16" placeholder="16 Digit NIK" required />
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Nama Lengkap *</label>
+                                <label class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
                                 <input type="text" name="full_name" class="form-control" placeholder="Nama Tanpa Gelar" required />
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -42,7 +42,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label">Jenis Kelamin *</label>
+                                <label class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
                                 <select class="form-select" name="gender" required>
                                     <option value="">Pilih Jenis Kelamin</option>
                                     <option value="laki-laki">Laki-laki</option>
@@ -51,12 +51,12 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Tempat Lahir *</label>
+                                <label class="form-label">Tempat Lahir <span class="text-danger">*</span></label>
                                 <input type="text" name="birth_place" class="form-control" placeholder="Kota Lahir" required />
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Tanggal Lahir *</label>
+                                <label class="form-label">Tanggal Lahir <span class="text-danger">*</span></label>
                                 <input type="date" name="birth_date" class="form-control" required />
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -69,36 +69,36 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">No. Telepon/WA *</label>
+                                <label class="form-label">No. Telepon/WA <span class="text-danger">*</span></label>
                                 <input type="text" name="phone_number" class="form-control" placeholder="08XXXXXXXXXX" required />
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Email / Kontak Lain *</label>
+                                <label class="form-label">Email / Kontak Lain <span class="text-danger">*</span></label>
                                 <input type="text" name="contact" class="form-control" placeholder="email@contoh.com" required />
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Alamat Lengkap *</label>
+                            <label class="form-label">Alamat Lengkap <span class="text-danger">*</span></label>
                             <textarea class="form-control" name="address" rows="2" placeholder="Nama Jalan, No Rumah" required></textarea>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-3">
-                                <label class="form-label">RT *</label>
+                                <label class="form-label">RT <span class="text-danger">*</span></label>
                                 <input type="text" name="rt" class="form-control" placeholder="000" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">RW *</label>
+                                <label class="form-label">RW <span class="text-danger">*</span></label>
                                 <input type="text" name="rw" class="form-control" placeholder="000" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Kelurahan *</label>
+                                <label class="form-label">Kelurahan <span class="text-danger">*</span></label>
                                 <input type="text" name="village" class="form-control" placeholder="Nama Desa/Kelurahan" required>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -106,17 +106,17 @@
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label">Kecamatan *</label>
+                                <label class="form-label">Kecamatan <span class="text-danger">*</span></label>
                                 <input type="text" name="subdistrict" class="form-control" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Kota/Kabupaten *</label>
+                                <label class="form-label">Kota/Kabupaten <span class="text-danger">*</span></label>
                                 <input type="text" name="city" class="form-control" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Provinsi *</label>
+                                <label class="form-label">Provinsi <span class="text-danger">*</span></label>
                                 <input type="text" name="province" class="form-control" required>
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -129,7 +129,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label">Departemen *</label>
+                                <label class="form-label">Departemen <span class="text-danger">*</span></label>
                                 <select name="department_code" class="form-select select2" required>
                                     <option value="">Pilih Departemen</option>
                                     @foreach($departments as $dept)
@@ -139,7 +139,7 @@
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Jabatan *</label>
+                                <label class="form-label">Jabatan <span class="text-danger">*</span></label>
                                 <select name="position_code" id="position_code" class="form-select select2" required>
                                     <option value="">Pilih Jabatan</option>
                                     @foreach($positions as $pos)
@@ -152,12 +152,12 @@
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label">Pendidikan Terakhir *</label>
+                                <label class="form-label">Pendidikan Terakhir <span class="text-danger">*</span></label>
                                 <input type="text" name="last_education" class="form-control" placeholder="Contoh: S1 Kedokteran" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Status Pernikahan *</label>
+                                <label class="form-label">Status Pernikahan <span class="text-danger">*</span></label>
                                 <select name="marital_status" class="form-select" required>
                                     <option value="Belum Kawin">Belum Kawin</option>
                                     <option value="Kawin">Kawin</option>
@@ -235,20 +235,7 @@
     $(document).ready(function() {
         $('.select2').select2({ theme: 'bootstrap-5' });
 
-        function handleValidationErrors(form, errors) {
-            $(form).find('.is-invalid').removeClass('is-invalid');
-            $(form).find('.invalid-feedback').text('');
-            
-            Object.keys(errors).forEach(key => {
-                const input = $(form).find(`[name="${key}"]`);
-                input.addClass('is-invalid');
-                const feedback = input.siblings('.invalid-feedback');
-                if (feedback.length) {
-                    feedback.text(errors[key][0]);
-                } else {
-                    input.parent().append(`<div class="invalid-feedback d-block">${errors[key][0]}</div>`);
-                }
-            });
+                    });
         }
 
         $('#position_code').on('change', function() {

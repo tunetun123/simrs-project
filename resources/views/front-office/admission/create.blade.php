@@ -36,7 +36,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="polyclinic_code">Klinik / Unit Tujuan</label>
+                                <label class="form-label" for="polyclinic_code">Klinik / Unit Tujuan <span class="text-danger">*</span></label>
                                 <select class="form-select" id="polyclinic_code" name="polyclinic_code" required>
                                     <option value="">Pilih Unit</option>
                                     @foreach($polyclinics as $poly)
@@ -45,7 +45,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="visit_type">Jenis Kunjungan</label>
+                                <label class="form-label" for="visit_type">Jenis Kunjungan <span class="text-danger">*</span></label>
                                 <select class="form-select" id="visit_type" name="visit_type" required>
                                     <option value="Rawat Jalan">Rawat Jalan</option>
                                     <option value="IGD">IGD</option>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="insurance_code">Jenis Penjamin / Pembayaran</label>
+                            <label class="form-label" for="insurance_code">Jenis Penjamin / Pembayaran <span class="text-danger">*</span></label>
                             <select class="form-select" id="insurance_code" name="insurance_code" required>
                                 <option value="">Pilih Penjamin</option>
                                 @foreach($insurances as $ins)
@@ -139,15 +139,11 @@
                 },
                 error: function(xhr) {
                     let errorMessage = 'Terjadi kesalahan sistem.';
-                    
+
                     if (xhr.status === 422) {
-                        const errors = xhr.responseJSON.errors;
-                        errorMessage = '';
-                        $.each(errors, function(key, value) {
-                            errorMessage += value[0] + '<br>';
-                        });
-                    }
-                    
+                        handleValidationErrors('#form-registration', xhr.responseJSON.errors);
+                        errorMessage = 'Pastikan semua form diisi dengan benar.';
+                    }                    
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal Daftar!',

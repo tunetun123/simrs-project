@@ -18,7 +18,7 @@
                         <!-- Master Selection Section -->
                         <div class="row mb-4">
                             <div class="col-md-4">
-                                <label class="form-label" for="polyclinic_code">Poliklinik</label>
+                                <label class="form-label" for="polyclinic_code">Poliklinik <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <select class="form-select select2" id="polyclinic_code" name="polyclinic_code" required>
                                         <option value="">Cari Poliklinik...</option>
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label" for="doctor_code">Dokter Spesialis</label>
+                                <label class="form-label" for="doctor_code">Dokter Spesialis <span class="text-danger">*</span></label>
                                 <select class="form-select select2" id="doctor_code" name="doctor_code" required>
                                     <option value="">Pilih Dokter</option>
                                     @foreach($doctors as $doctor)
@@ -41,7 +41,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label" for="insurance_code">Asuransi</label>
+                                <label class="form-label" for="insurance_code">Asuransi <span class="text-danger">*</span></label>
                                 <select class="form-select select2" id="insurance_code" name="insurance_code" required>
                                     <option value="">Pilih Asuransi</option>
                                     @foreach($insurances as $insurance)
@@ -117,11 +117,11 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="new_polyclinic_code" class="form-label">Kode Poliklinik</label>
+                        <label for="new_polyclinic_code" class="form-label">Kode Poliklinik <span class="text-danger">*</span></label>
                         <input type="text" id="new_polyclinic_code" name="polyclinic_code" class="form-control" placeholder="Contoh: POLI-UMM" required />
                     </div>
                     <div class="mb-3">
-                        <label for="new_name" class="form-label">Nama Poliklinik</label>
+                        <label for="new_name" class="form-label">Nama Poliklinik <span class="text-danger">*</span></label>
                         <input type="text" id="new_name" name="name" class="form-control" placeholder="Contoh: Poliklinik Umum" required />
                     </div>
                     <div class="mb-3">
@@ -203,10 +203,10 @@
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function(response) {
+                    $('#modalAddPolyclinic').modal('hide');
                     Swal.fire('Berhasil!', 'Poliklinik master berhasil ditambahkan.', 'success');
                     const newOption = new Option(response.data.name + ' (' + response.data.polyclinic_code + ')', response.data.polyclinic_code, true, true);
                     $('#polyclinic_code').append(newOption).trigger('change');
-                    $('#modalAddPolyclinic').modal('hide');
                     $('#form-master-polyclinic')[0].reset();
                 },
                 error: function(xhr) {
@@ -254,7 +254,8 @@
                         error: function(xhr) {
                             let errorMessage = xhr.responseJSON.message || 'Terjadi kesalahan.';
                             if (xhr.status === 422) {
-                                errorMessage = Object.values(xhr.responseJSON.errors).flat().join('<br>');
+                                handleValidationErrors('#form-schedule', xhr.responseJSON.errors);
+                                errorMessage = 'Pastikan semua form diisi dengan benar.';
                             }
                             Swal.fire({ icon: 'error', title: 'Gagal!', html: errorMessage });
                         }

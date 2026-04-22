@@ -42,12 +42,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="address">Alamat</label>
+                            <label class="form-label" for="address">Alamat <span class="text-danger">*</span></label>
                             <textarea id="address" class="form-control" name="address" required>{{ $insurance->address }}</textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="status">Status</label>
+                            <label class="form-label" for="status">Status <span class="text-danger">*</span></label>
                             <select class="form-select" id="status" name="status" required>
                                 <option value="active" {{ $insurance->status == 'active' ? 'selected' : '' }}>Active</option>
                                 <option value="inactive" {{ $insurance->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
@@ -117,7 +117,8 @@
                         error: function(xhr) {
                             let errorMessage = 'Terjadi kesalahan sistem.';
                             if (xhr.status === 422) {
-                                errorMessage = Object.values(xhr.responseJSON.errors).map(e => e[0]).join('<br>');
+                                handleValidationErrors('#form-edit-insurance', xhr.responseJSON.errors);
+                                errorMessage = 'Pastikan semua form diisi dengan benar.';
                             }
                             Swal.fire({
                                 icon: 'error',

@@ -147,7 +147,7 @@
                         <input type="text" id="display_edit_code" class="form-control" disabled />
                     </div>
                     <div class="mb-3">
-                        <label for="edit_name" class="form-label">Nama Poliklinik</label>
+                        <label for="edit_name" class="form-label">Nama Poliklinik <span class="text-danger">*</span></label>
                         <input type="text" id="edit_name" name="name" class="form-control" required />
                     </div>
                     <div class="mb-3">
@@ -179,11 +179,11 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="new_polyclinic_code" class="form-label">Kode Poliklinik</label>
+                        <label for="new_polyclinic_code" class="form-label">Kode Poliklinik <span class="text-danger">*</span></label>
                         <input type="text" id="new_polyclinic_code" name="polyclinic_code" class="form-control" placeholder="Contoh: POLI-UMM" required />
                     </div>
                     <div class="mb-3">
-                        <label for="new_name" class="form-label">Nama Poliklinik</label>
+                        <label for="new_name" class="form-label">Nama Poliklinik <span class="text-danger">*</span></label>
                         <input type="text" id="new_name" name="name" class="form-control" placeholder="Contoh: Poliklinik Umum" required />
                     </div>
                     <div class="mb-3">
@@ -220,6 +220,7 @@
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function(response) {
+                    $('#modalAddPolyclinic').modal('hide');
                     Swal.fire('Berhasil!', 'Poliklinik master berhasil ditambahkan.', 'success').then(() => location.reload());
                 },
                 error: function(xhr) {
@@ -253,6 +254,7 @@
                 type: 'POST', // POST with _method=PUT
                 data: $(this).serialize(),
                 success: function(response) {
+                    $('#modalEditPolyclinic').modal('hide');
                     Swal.fire('Berhasil!', 'Data poliklinik berhasil diperbarui.', 'success').then(() => location.reload());
                 },
                 error: function(xhr) {

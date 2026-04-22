@@ -30,7 +30,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="doctor_code">Dokter Spesialis</label>
+                                <label class="form-label" for="doctor_code">Dokter Spesialis <span class="text-danger">*</span></label>
                                 <select class="form-select select2" id="doctor_code" name="doctor_code" required>
                                     <option value="">Pilih Dokter</option>
                                     @foreach($doctors as $doctor)
@@ -41,7 +41,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="insurance_code">Asuransi Terkait</label>
+                                <label class="form-label" for="insurance_code">Asuransi Terkait <span class="text-danger">*</span></label>
                                 <select class="form-select select2" id="insurance_code" name="insurance_code" required>
                                     <option value="">Pilih Asuransi</option>
                                     @foreach($insurances as $insurance)
@@ -74,7 +74,7 @@
                                 <input type="number" class="form-control" id="patient_quota" name="patient_quota" value="{{ $polyclinic->patient_quota }}" required />
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="status">Status</label>
+                                <label class="form-label" for="status">Status <span class="text-danger">*</span></label>
                                 <select class="form-select" id="status" name="status" required>
                                     <option value="active" {{ $polyclinic->status == 'active' ? 'selected' : '' }}>Active</option>
                                     <option value="inactive" {{ $polyclinic->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
@@ -147,7 +147,8 @@
                         error: function(xhr) {
                             let errorMessage = 'Terjadi kesalahan sistem.';
                             if (xhr.status === 422) {
-                                errorMessage = Object.values(xhr.responseJSON.errors).map(e => e[0]).join('<br>');
+                                handleValidationErrors('#form-edit-polyclinic', xhr.responseJSON.errors);
+                                errorMessage = 'Pastikan semua form diisi dengan benar.';
                             }
                             Swal.fire({
                                 icon: 'error',

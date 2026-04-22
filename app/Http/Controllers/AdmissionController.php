@@ -39,9 +39,9 @@ class AdmissionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $visit_number)
     {
-        $admission = Registration::with(['patient', 'polyclinic', 'insurance'])->findOrFail($id);
+        $admission = Registration::with(['patient', 'polyclinic', 'insurance'])->where('visit_number', $visit_number)->firstOrFail();
         return view('front-office.admission.show', [
             'title' => 'Detail Pendaftaran',
             'admission' => $admission
@@ -51,9 +51,9 @@ class AdmissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $visit_number)
     {
-        $admission = Registration::findOrFail($id);
+        $admission = Registration::where('visit_number', $visit_number)->firstOrFail();
         return view('front-office.admission.edit', [
             'title' => 'Edit Pendaftaran',
             'admission' => $admission
@@ -63,9 +63,9 @@ class AdmissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $visit_number)
     {
-        $admission = Registration::findOrFail($id);
+        $admission = Registration::where('visit_number', $visit_number)->firstOrFail();
         $admission->delete();
         return redirect()->route('admissions.index')->with('success', 'Data pendaftaran berhasil dihapus.');
     }

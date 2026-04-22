@@ -56,14 +56,14 @@
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label" for="gender">Jenis Kelamin</label>
+                                <label class="form-label" for="gender">Jenis Kelamin <span class="text-danger">*</span></label>
                                 <select class="form-select" id="gender" name="gender" required>
                                     <option value="L" {{ $patient->gender == 'L' ? 'selected' : '' }}>Laki-laki</option>
                                     <option value="P" {{ $patient->gender == 'P' ? 'selected' : '' }}>Perempuan</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label" for="religion">Agama</label>
+                                <label class="form-label" for="religion">Agama <span class="text-danger">*</span></label>
                                 <select class="form-select" id="religion" name="religion" required>
                                     @php $religions = ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Khonghucu', 'Lainnya']; @endphp
                                     @foreach($religions as $r)
@@ -72,7 +72,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label" for="blood_type">Golongan Darah</label>
+                                <label class="form-label" for="blood_type">Golongan Darah <span class="text-danger">*</span></label>
                                 <select class="form-select" id="blood_type" name="blood_type" required>
                                     @php $bloods = ['-', 'A', 'B', 'AB', 'O']; @endphp
                                     @foreach($bloods as $b)
@@ -110,20 +110,20 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="address">Alamat Lengkap</label>
+                            <label class="form-label" for="address">Alamat Lengkap <span class="text-danger">*</span></label>
                             <textarea id="address" class="form-control" name="address" required>{{ $patient->address }}</textarea>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="country">Negara</label>
+                                <label class="form-label" for="country">Negara <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="country" name="country" required>
                                     <option value="Indonesia" {{ $patient->country == 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
                                     <option value="Lainnya" {{ $patient->country != 'Indonesia' ? 'selected' : '' }}>Lainnya</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="province">Provinsi</label>
+                                <label class="form-label" for="province">Provinsi <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="province" name="province" required>
                                     <option value="{{ $patient->province }}" selected>{{ $patient->province }}</option>
                                 </select>
@@ -132,13 +132,13 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="city">Kota / Kabupaten</label>
+                                <label class="form-label" for="city">Kota / Kabupaten <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="city" name="city" required>
                                     <option value="{{ $patient->city }}" selected>{{ $patient->city }}</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="subdistrict">Kecamatan</label>
+                                <label class="form-label" for="subdistrict">Kecamatan <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="subdistrict" name="subdistrict" required>
                                     <option value="{{ $patient->subdistrict }}" selected>{{ $patient->subdistrict }}</option>
                                 </select>
@@ -147,7 +147,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label" for="village">Kelurahan / Desa</label>
+                                <label class="form-label" for="village">Kelurahan / Desa <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="village" name="village" required>
                                     <option value="{{ $patient->village }}" selected>{{ $patient->village }}</option>
                                 </select>
@@ -167,7 +167,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="marital_status">Status Pernikahan</label>
+                            <label class="form-label" for="marital_status">Status Pernikahan <span class="text-danger">*</span></label>
                             <select class="form-select" id="marital_status" name="marital_status" required>
                                 @php $statuses = ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati']; @endphp
                                 @foreach($statuses as $s)
@@ -344,7 +344,11 @@
                             });
                         },
                         error: function(xhr) {
-                            let msg = xhr.status === 422 ? Object.values(xhr.responseJSON.errors).map(e => e[0]).join('<br>') : 'Error sistem.';
+                            let msg = 'Error sistem.';
+                            if (xhr.status === 422) {
+                                handleValidationErrors('#form-edit-patient', xhr.responseJSON.errors);
+                                msg = 'Pastikan semua form diisi dengan benar.';
+                            }
                             Swal.fire('Gagal!', msg, 'error');
                         }
                     });

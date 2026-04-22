@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="full_name">Nama Lengkap</label>
+                            <label class="form-label" for="full_name">Nama Lengkap <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Masukkan Nama Lengkap" required />
                         </div>
 
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="mb-3" id="nik_container">
-                            <label class="form-label" for="nik">NIK</label>
+                            <label class="form-label" for="nik">NIK <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK" required />
                         </div>
 
@@ -55,7 +55,7 @@
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label" for="gender">Jenis Kelamin</label>
+                                <label class="form-label" for="gender">Jenis Kelamin <span class="text-danger">*</span></label>
                                 <select class="form-select" id="gender" name="gender" required>
                                     <option value="">Pilih Jenis Kelamin</option>
                                     <option value="L">Laki-laki</option>
@@ -63,7 +63,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label" for="religion">Agama</label>
+                                <label class="form-label" for="religion">Agama <span class="text-danger">*</span></label>
                                 <select class="form-select" id="religion" name="religion" required>
                                     <option value="">Pilih Agama</option>
                                     <option value="Islam">Islam</option>
@@ -76,7 +76,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label" for="blood_type">Golongan Darah</label>
+                                <label class="form-label" for="blood_type">Golongan Darah <span class="text-danger">*</span></label>
                                 <select class="form-select" id="blood_type" name="blood_type" required>
                                     <option value="-">Tidak Tahu</option>
                                     <option value="A">A</option>
@@ -89,46 +89,46 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="birth_place">Tempat Lahir</label>
+                                <label class="form-label" for="birth_place">Tempat Lahir <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="birth_place" name="birth_place" placeholder="Masukkan Tempat Lahir" required />
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="birth_date">Tanggal Lahir</label>
+                                <label class="form-label" for="birth_date">Tanggal Lahir <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control" id="birth_date" name="birth_date" required />
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="mothers_maiden_name">Nama Ibu Kandung</label>
+                            <label class="form-label" for="mothers_maiden_name">Nama Ibu Kandung <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="mothers_maiden_name" name="mothers_maiden_name" placeholder="Masukkan Nama Ibu Kandung" required />
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="phone_number">No. Telepon</label>
+                                <label class="form-label" for="phone_number">No. Telepon <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Masukkan No. Telepon" required />
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="language">Bahasa</label>
+                                <label class="form-label" for="language">Bahasa <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="language" name="language" placeholder="Contoh: Indonesia" required />
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="address">Alamat Lengkap</label>
+                            <label class="form-label" for="address">Alamat Lengkap <span class="text-danger">*</span></label>
                             <textarea id="address" class="form-control" name="address" placeholder="Masukkan Alamat Lengkap" required></textarea>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="country">Negara</label>
+                                <label class="form-label" for="country">Negara <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="country" name="country" required>
                                     <option value="Indonesia">Indonesia</option>
                                     <option value="Lainnya">Lainnya</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="province">Provinsi</label>
+                                <label class="form-label" for="province">Provinsi <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="province" name="province" required>
                                     <option value="">Pilih Provinsi</option>
                                 </select>
@@ -137,13 +137,13 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="city">Kota / Kabupaten</label>
+                                <label class="form-label" for="city">Kota / Kabupaten <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="city" name="city" required>
                                     <option value="">Pilih Kota</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="subdistrict">Kecamatan</label>
+                                <label class="form-label" for="subdistrict">Kecamatan <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="subdistrict" name="subdistrict" required>
                                     <option value="">Pilih Kecamatan</option>
                                 </select>
@@ -152,27 +152,27 @@
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label" for="village">Kelurahan / Desa</label>
+                                <label class="form-label" for="village">Kelurahan / Desa <span class="text-danger">*</span></label>
                                 <select class="form-select select2-location" id="village" name="village" required>
                                     <option value="">Pilih Kelurahan</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <label class="form-label" for="rt">RT</label>
+                                <label class="form-label" for="rt">RT <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="rt" name="rt" placeholder="001" required />
                             </div>
                             <div class="col-md-2">
-                                <label class="form-label" for="rw">RW</label>
+                                <label class="form-label" for="rw">RW <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="rw" name="rw" placeholder="002" required />
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label" for="postal_code">Kode Pos</label>
+                                <label class="form-label" for="postal_code">Kode Pos <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="postal_code" name="postal_code" required />
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="marital_status">Status Pernikahan</label>
+                            <label class="form-label" for="marital_status">Status Pernikahan <span class="text-danger">*</span></label>
                             <select class="form-select" id="marital_status" name="marital_status" required>
                                 <option value="Belum Kawin">Belum Kawin</option>
                                 <option value="Kawin">Kawin</option>
@@ -408,7 +408,8 @@
                         error: function(xhr) {
                             let errorMessage = 'Terjadi kesalahan sistem.';
                             if (xhr.status === 422) {
-                                errorMessage = Object.values(xhr.responseJSON.errors).map(e => e[0]).join('<br>');
+                                handleValidationErrors('#form-patient', xhr.responseJSON.errors);
+                                errorMessage = 'Pastikan semua form diisi dengan benar.';
                             }
                             Swal.fire({
                                 icon: 'error',

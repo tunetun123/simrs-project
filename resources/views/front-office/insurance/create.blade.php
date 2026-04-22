@@ -16,12 +16,12 @@
                     <form id="form-insurance" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label class="form-label" for="insurance_code">Kode Asuransi</label>
+                            <label class="form-label" for="insurance_code">Kode Asuransi <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="insurance_code" name="insurance_code" placeholder="Contoh: BPJS, AIA, AXA" required />
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="name">Nama Asuransi</label>
+                            <label class="form-label" for="name">Nama Asuransi <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama Asuransi" required />
                         </div>
 
@@ -32,17 +32,17 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="contact">Kontak / Telepon</label>
+                            <label class="form-label" for="contact">Kontak / Telepon <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="contact" name="contact" placeholder="Masukkan Nomor Kontak" required />
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="address">Alamat</label>
+                            <label class="form-label" for="address">Alamat <span class="text-danger">*</span></label>
                             <textarea id="address" class="form-control" name="address" placeholder="Masukkan Alamat Kantor" required></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="status">Status</label>
+                            <label class="form-label" for="status">Status <span class="text-danger">*</span></label>
                             <select class="form-select" id="status" name="status" required>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
@@ -112,7 +112,8 @@
                         error: function(xhr) {
                             let errorMessage = 'Terjadi kesalahan sistem.';
                             if (xhr.status === 422) {
-                                errorMessage = Object.values(xhr.responseJSON.errors).map(e => e[0]).join('<br>');
+                                handleValidationErrors('#form-insurance', xhr.responseJSON.errors);
+                                errorMessage = 'Pastikan semua form diisi dengan benar.';
                             }
                             Swal.fire({
                                 icon: 'error',

@@ -29,7 +29,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label" for="unit">Klinik / Unit Tujuan</label>
+                                <label class="form-label" for="unit">Klinik / Unit Tujuan <span class="text-danger">*</span></label>
                                 <select class="form-select" id="unit" name="unit" required>
                                     <option value="poli_umum" selected>Poli Umum</option>
                                     <option value="poli_gigi">Poli Gigi</option>
@@ -37,7 +37,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label" for="doctor">Dokter</label>
+                                <label class="form-label" for="doctor">Dokter <span class="text-danger">*</span></label>
                                 <select class="form-select" id="doctor" name="doctor" required>
                                     <option value="dr_smith" selected>dr. Smith</option>
                                     <option value="dr_doe">dr. Doe</option>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="payment_type">Jenis Penjamin / Pembayaran</label>
+                            <label class="form-label" for="payment_type">Jenis Penjamin / Pembayaran <span class="text-danger">*</span></label>
                             <select class="form-select" id="payment_type" name="payment_type" required>
                                 <option value="umum" selected>Umum (Mandiri)</option>
                                 <option value="bpjs">BPJS Kesehatan</option>
@@ -53,7 +53,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="status">Status</label>
+                            <label class="form-label" for="status">Status <span class="text-danger">*</span></label>
                             <select class="form-select" id="status" name="status" required>
                                 <option value="terdaftar" selected>Terdaftar</option>
                                 <option value="menunggu">Menunggu</option>

@@ -235,9 +235,6 @@
     $(document).ready(function() {
         $('.select2').select2({ theme: 'bootstrap-5' });
 
-                    });
-        }
-
         $('#position_code').on('change', function() {
             const positionText = $(this).find('option:selected').text().toLowerCase();
             $('#section-specific').addClass('d-none');

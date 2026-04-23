@@ -447,8 +447,6 @@
         });
 
         // Generic Validation Handler
-                    });
-        }
 
         // ---------------- DOKTER ----------------
         $(document).on('click', '.btn-edit-doctor', function() {
